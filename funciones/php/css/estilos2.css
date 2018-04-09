@@ -1,0 +1,11 @@
+@charset "utf-8";
+/* CSS Document */
+
+
+.contador {text-align:center}
+
+.contador .label {font-size: 10px; font-weight:600; letter-spacing:1px; position:relative;}
+
+.contador .block {display: inline-block; padding-top: 250px; margin: 0 20px 20px; height: 190px; width: 18px; font-size: 20px; font-weight:bold; }
+
+.contador .conta {padding: 0 0 3px;}
