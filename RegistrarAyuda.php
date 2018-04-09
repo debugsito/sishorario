@@ -3,7 +3,7 @@
 
 $server = 'localhost';
 $username = 'root';
-$password = '';
+$password = 'root';
 $database = 'sishorario';
 
 try {
@@ -81,11 +81,12 @@ window.location.href = "sistema.php";
 
 <?php } else{ 
 
-    $sql = "INSERT INTO tblayuda (monto,fecha,id_usuario) VALUES (:usu_monto,'$fecha',:id_usuario)";
+    $sql = "INSERT INTO tblayuda (monto,fecha,id_usuario,para_consumir) VALUES (:usu_monto,'$fecha',:id_usuario,:para_consumir)";
     $stmt = $conn->prepare($sql);
     $stmt->bindParam(':usu_monto', $_POST['montos']);
+    $stmt->bindParam(':para_consumir', $_POST['montos']);
     $stmt->bindParam(':id_usuario', $_POST['id_usuario']);
-    
+
     if ($stmt->execute()) {
     
  print "<script>alert('$mensaje')</script>";

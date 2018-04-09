@@ -47,6 +47,10 @@ class UsuarioData {
 		return Model::one($query[0],new UsuarioData());
 	}
 
-}
+    public static function getByPatrocinador($id){
+        $sql = "select * from ".self::$tablename." where idUsuario=$id ";
+        $query = Executor::doit($sql);
+        return Model::one($query[0],new UsuarioData());
+    }
 
-?>
+}

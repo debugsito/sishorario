@@ -45,7 +45,7 @@ $idd= $_SESSION['id'];
 
 <?php 
 
-$conexion=mysqli_connect('localhost','root','','sishorario');
+$conexion=mysqli_connect('localhost','root','root','sishorario');
 $contador=0;
 		$sql="SELECT monto from tblayuda where id_usuario=$idd ";
 		$result=mysqli_query($conexion,$sql);

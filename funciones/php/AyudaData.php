@@ -23,7 +23,7 @@ class AyudaData {
 	}
 
 	public static function getAllUsuario($id){
-		$sql = "select * from ".self::$tablename." where id_usuario=$id";
+		$sql = "select * from ".self::$tablename." where id_usuario=$id and bono_consumido=0";
 		$query = Executor::doit($sql);
 		return Model::many($query[0],new AyudaData());
 	}

@@ -28,7 +28,7 @@ date_default_timezone_set('America/Lima');
 
 $server = 'localhost';
 $username = 'root';
-$password = '';
+$password = 'root';
 $database = 'sishorario';
 
 try {
@@ -57,7 +57,7 @@ try {
 
 <?php 
 
-$conexion=mysqli_connect('localhost','root','','sishorario');
+$conexion=mysqli_connect('localhost','root','root','sishorario');
 
 		$sql="SELECT * from tblusuarios where idUsuario=$idd ";
 		$result=mysqli_query($conexion,$sql);
