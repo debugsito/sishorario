@@ -52,10 +52,13 @@ class AyudaData {
 		return Model::many($query[0],new AyudaData());
 	}
 
-	public static function getByMonto($monto){
-		$sql = "select * from ".self::$tablename." where monto=$monto and estado=0 limit 1 ";
+	public static function getTotalAyuda($users_brindan){
+        $users_brindan = implode(',',$users_brindan);
+        $sql = "select sum(para_consumir) as disponible from ".self::$tablename." where para_consumir>0 and id_usuario in ($users_brindan) and estado=0";
+		$sql2 = "select * from ".self::$tablename." where para_consumir>0 and estado=0  and id_usuario in ($users_brindan) ORDER BY RAND()";
 		$query = Executor::doit($sql);
-		return Model::many($query[0],new AyudaData());
+		$query2 = Executor::doit($sql2);
+		return array('total'=>Model::many($query[0],new AyudaData()),'ayudas'=>Model::many($query2[0],new AyudaData())) ;
 	}
 
 	public static function getByMontoSuma2($monto){

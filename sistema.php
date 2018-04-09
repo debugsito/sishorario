@@ -599,8 +599,7 @@ include "BrindarAyudaData.php";
                     <br>
                     <div class="form-group " align="center">
                     </div>
-                    <button class="btn btn-info" type="submit"><i class="fa fa-handshake-o"></i><b> Solicitar
-                            Ayuda</b></button>
+                    <button class="btn btn-info" type="submit"><i class="fa fa-handshake-o"></i><b> Solicitar Ayuda</b></button>
                 </form>
             </div>
 

@@ -285,7 +285,7 @@ if (count($users) > 0) {
         </td>
         <td>
             <center>S/.<input type="number" style="border:none" name="monto"
-                              value="<?php echo $cadena - $ultimo; ?>" disabled=''></center>
+                              value="<?php echo $cadena - $ultimo; ?>" readonly></center>
         </td>
         <br>
 

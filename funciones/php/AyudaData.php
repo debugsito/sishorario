@@ -52,6 +52,12 @@ class AyudaData {
 		return Model::many($query[0],new AyudaData());
 	}
 
+    public static function getTotalAyuda(){
+        $sql = "select * from ".self::$tablename." where para_consumir>0 and estado=0";
+        $query = Executor::doit($sql);
+        return Model::many($query[0],new AyudaData());
+    }
+
 
 
 }

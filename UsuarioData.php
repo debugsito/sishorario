@@ -34,7 +34,7 @@ class UsuarioData {
 
 
 
-	public static function getByUsuario(){
+	public static function getByUsuario($id){
 		$sql = "select * from ".self::$tablename." where idUsuario=$id";
 		$query = Executor::doit($sql);
 		return Model::one($query[0],new UsuarioData());
@@ -45,6 +45,17 @@ class UsuarioData {
 		$query = Executor::doit($sql);
 		return Model::many($query[0],new UsuarioData());
 	}
+
+    public static function getAllUsuarioIds($id){
+        $sql = "select idUsuario from ".self::$tablename." where id_patrocinador=$id";
+        $query = Executor::doit($sql);
+        $result = Model::many($query[0],new UsuarioData());
+        $ids= [];
+        foreach ($result as $row){
+            $ids[]=$row->idUsuario;
+        }
+        return$ids;
+    }
 
 
 }
