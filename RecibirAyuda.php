@@ -10,24 +10,26 @@ $subtotal1 = $_POST['monto'];
 ?>
 <?php
 $id_recibe = $_POST['id_recibe'];
-$monto = $_POST['monto'];
+$monto = (double) $_POST['monto'];
 $user = UsuarioData::getByUsuario($id_recibe);
-$usuarios_ayuda = UsuarioData::getAllUsuarioIds($user->id_patrocinador);
-$ayudas = AyudaData::getTotalAyuda($usuarios_ayuda);
+//$usuarios_ayuda = UsuarioData::getAllUsuarioIds($user->id_patrocinador);
+$ayudas = AyudaData::getTotalAyuda();
 $total_ayuda = $ayudas['total'][0]->disponible;
 $ayudas = $ayudas['ayudas'];
 if($total_ayuda> $monto ){
     foreach ($ayudas as $ayuda){
-        if($ayuda->para_consumir < $monto ){
+        $disponible = (double)$ayuda->para_consumir;
+        //        estado =  0->no ha sido tomado 1->ha sido tomado 2-> ha sido tomado parcialmente
+        if($disponible < $monto ){
             //el ultimo es lo que queda para consumir
-            AyudasTransacciones::crearTransaccion($ayuda,$ayuda->para_consumir,$id_recibe,0);
-            $monto-=$ayuda->para_consumir;
-        }elseif ($ayuda->para_consumir = $monto){
-            AyudasTransacciones::crearTransaccion($ayuda,$ayuda->para_consumir,$id_recibe,0);
-            $monto-=$ayuda->para_consumir;
+            AyudasTransacciones::crearTransaccion($ayuda,$monto,$id_recibe,0,1);
+            $monto-=$disponible;
+        }elseif ($disponible == $monto){
+            AyudasTransacciones::crearTransaccion($ayuda,$monto,$id_recibe,0 ,1);
+            $monto-=$disponible;
             break;
         }else{
-            AyudasTransacciones::crearTransaccion($ayuda,$ayuda->para_consumir,$id_recibe,$ayuda->para_consumir-$monto);
+            AyudasTransacciones::crearTransaccion($ayuda,$monto,$id_recibe,$disponible-$monto,2);
             break;
         }
     } ?>

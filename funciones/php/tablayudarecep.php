@@ -35,6 +35,7 @@ date_default_timezone_set('America/Lima');
 <?php
 
 $ayudas = BrindarAyudaData::getByUser($idd);
+//var_dump($ayudas); exit;
 if(count($ayudas)>0){
 
 ?>
@@ -47,10 +48,10 @@ if(count($ayudas)>0){
         <td><center><?php echo $ayuda->getUsuario()->nombres; ?></center></td>
         <td><center><b>S/. <?php echo $ayuda->monto; ?></b></center></td>
         <td><center><?php echo $ayuda->getUsuario2()->nombres; ?></center></td>
-        <td><center><?php echo $ayuda->fecha; ?></center></td>
+        <td><center><?php echo $ayuda->created_at; ?></center></td>
 
-<?php $fecha_db=$ayuda->fecha; ?>
-<?php $fecha_db_fini=$ayuda->fecha_fini; ?>
+<?php $fecha_db=$ayuda->created_at; ?>
+<?php $fecha_db_fini=$ayuda->fecha_final; ?>
 
 <?php  
 
@@ -73,7 +74,7 @@ $diff_condicion = $fecha_condicion_hoy->diff($fecha_condicion);
 
 <?php   
 if($diff_condicion->invert == 1 and $ayuda->foto!='' and $ayuda->foto!=NULL) {
-$validar = BrindarAyudaData::getById($ayuda->id);
+$validar = BrindarAyudaData::getByAyuda($ayuda);
 $validar->updateValidar();
 }
 ?>

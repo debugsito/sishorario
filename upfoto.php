@@ -11,7 +11,8 @@ include "TblBancosData.php";
 $nombre_img = $_FILES['imagen']['name'];
 $tipo = $_FILES['imagen']['type'];
 $tamano = $_FILES['imagen']['size'];
- 
+
+$status = 'nada';
 //Si existe imagen y tiene un tamaño correcto
 if (($nombre_img == !NULL) && ($_FILES['imagen']['size'] <=9000000)) 
 {
@@ -24,8 +25,16 @@ if (($nombre_img == !NULL) && ($_FILES['imagen']['size'] <=9000000))
       // Ruta donde se guardarán las imágenes que subamos
       $directorio = 'voucher/';
       // Muevo la imagen desde el directorio temporal a nuestra ruta indicada anteriormente
-      move_uploaded_file($_FILES['imagen']['tmp_name'],$directorio.$nombre_img);
-    } 
+       $status = move_uploaded_file($_FILES['imagen']['tmp_name'],$directorio.$nombre_img);
+       date_default_timezone_set('America/Lima');
+       $fecha = date('Y-m-d H:i:s');
+
+       $fotos = BrindarAyudaData::getById($_POST["id_ayuda"]);
+       $fotos->foto = $nombre_img;
+       $fotos->fecha_final = $fecha;
+       $fotos->update();
+
+   }
     else 
     {
        //si no cumple con el formato
@@ -38,17 +47,7 @@ else
    if($nombre_img == !NULL) echo "La imagen es demasiado grande "; 
 }
 
-date_default_timezone_set('America/Lima');
-$fecha = date('Y-m-d H:i:s');
-
-$fotos = BrindarAyudaData::getById($_POST["id_ayuda"]);
-  $fotos->foto = $nombre_img;
-  $fotos->fecha_fini = $fecha;
-  $fotos->update();
-
  
 /* volvemos a la página principal para cargar la imagen que hemos subido */
 header("Location: sistema.php");
 
-
-?>

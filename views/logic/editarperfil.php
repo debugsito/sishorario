@@ -269,7 +269,7 @@ select {
 <select type="select" name="entidad" <?php if($contador!=0){ echo  "disabled"; } ?>  class="form-control" id="entidad" required>
  						   <OPTION value="">Entidad Financiera</OPTION>
 							<?php
-								$con = new Mysqli("localhost", "root", "", "sishorario");
+								$con = new Mysqli("localhost", "root", "root", "sishorario");
 								$sql="SELECT * FROM bancos ORDER BY id_banco";
 								$proceso = mysqli_query($con, $sql);
 

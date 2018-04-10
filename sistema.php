@@ -391,11 +391,12 @@ include "BrindarAyudaData.php";
 
 
         <div class="card-content table-responsive">
-<!--            --><?php //if ($diff_condicion_brindar->invert == 1) { ?>
+            <?php if ($diff_condicion_brindar->invert == 1) { ?>
                 <a href="#" class="btn btn-info" data-toggle="modal" data-target="#ModalRegistroAyuda"
-                   id="btnRegistrarAyuda" onClick="this.disabled=false"><i class="fa fa-handshake-o" aria-hidden="true"></i>
+                   id="btnRegistrarAyuda" onClick="this.disabled=false"><i class="fa fa-handshake-o"
+                                                                           aria-hidden="true"></i>
                     Solicitar Ayuda</a>
-<!--            --><?php //} ?>
+            <?php } ?>
             <br><br>
             <div class="table" align="center">
                 <?php
@@ -599,7 +600,8 @@ include "BrindarAyudaData.php";
                     <br>
                     <div class="form-group " align="center">
                     </div>
-                    <button class="btn btn-info" type="submit"><i class="fa fa-handshake-o"></i><b> Solicitar Ayuda</b></button>
+                    <button class="btn btn-info" type="submit"><i class="fa fa-handshake-o"></i><b> Solicitar Ayuda</b>
+                    </button>
                 </form>
             </div>
 

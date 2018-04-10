@@ -32,9 +32,9 @@ include "TblBancosData.php";
 
 <div class="card-content table-responsive">
  
-<?php $beneficiario = UsuarioData::getById($_GET['id']); ?>
- 
-<?php $banco = TblBancosData::getByIdUser($beneficiario->idUsuario); ?>
+<?php $beneficiario = UsuarioData::getById($_GET['id']);
+
+$banco = TblBancosData::getByIdUser($beneficiario->idUsuario); ?>
 
 <?php if(count($banco)>0){ 
 	$n_cuenta= $banco->n_cuenta; 
