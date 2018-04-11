@@ -15,7 +15,7 @@ $Segundo="Segundo";
 $Tercero="Tercero";
 $Cuarto="Cuarto";
 
-$conexion = new mysqli("localhost", "root", "", "sishorario");
+$conexion = new mysqli("localhost", "root", "root", "sishorario");
 
 $sql="UPDATE tbltrimestres SET tri_inicio='$inicioP', tri_fin='$finP' WHERE tri_descripcion ='$Primero'";
 mysqli_query($conexion, $sql);

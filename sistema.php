@@ -47,7 +47,7 @@ include "BrindarAyudaData.php";
 
             <?php
 
-            $conexion = mysqli_connect('localhost', 'root', '', 'sishorario');
+            $conexion = mysqli_connect('localhost', 'root', 'root', 'sishorario');
 
             $sql = "SELECT * from tblayuda where id_usuario=$idd  ";
             $result = mysqli_query($conexion, $sql);
@@ -130,7 +130,7 @@ include "BrindarAyudaData.php";
             ?>
             <?php
 
-            $conexion = mysqli_connect('localhost', 'root', '', 'sishorario');
+            $conexion = mysqli_connect('localhost', 'root', 'root', 'sishorario');
 
             $sql21 = "SELECT * from tblayuda where id_usuario=$idd order by id desc limit 1  ";
             $result21 = mysqli_query($conexion, $sql21);
@@ -172,7 +172,7 @@ include "BrindarAyudaData.php";
 
             <?php
             $monto = 0;
-            $conexion = mysqli_connect('localhost', 'root', '', 'sishorario');
+            $conexion = mysqli_connect('localhost', 'root', 'root', 'sishorario');
 
             $sql = "SELECT * from tblayuda where id_usuario=$idd order by id desc limit 1  ";
             $result = mysqli_query($conexion, $sql);

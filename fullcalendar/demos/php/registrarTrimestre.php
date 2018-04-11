@@ -15,7 +15,7 @@ $Segundo="Segundo";
 $Tercero="Tercero";
 $Cuarto="Cuarto";
 
-$conexion = new mysqli("localhost", "root", "", "sishorario");
+$conexion = new mysqli("localhost", "root", "root", "sishorario");
 
 $sql="INSERT INTO tbltrimestres VALUES(0,'$inicioP', '$finP', '$Primero')";
 mysqli_query($conexion, $sql);

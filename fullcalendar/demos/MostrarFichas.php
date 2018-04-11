@@ -1,5 +1,5 @@
  <?php 
-              $con=new mysqli("localhost", "root","","sishorario");
+              $con=new mysqli("localhost", "root","root","sishorario");
               $sede =$_GET['sede'];
 
               $sql = "SELECT tblfichas.fic_nroficha as numero FROM tblfichas, tblsede WHERE tblsede.idSede='$sede' and tblfichas.fic_sede='$sede'";

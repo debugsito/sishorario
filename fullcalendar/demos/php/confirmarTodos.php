@@ -2,7 +2,7 @@
 <?php
 session_start();
 
-	$connection = new Mysqli("localhost", "root", "", "sishorario");
+	$connection = new Mysqli("localhost", "root", "root", "sishorario");
 	$confirmado="true";
 	$titulo=$_POST['title'];
 

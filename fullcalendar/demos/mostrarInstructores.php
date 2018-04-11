@@ -1,5 +1,5 @@
   <?php 
-              $con=new mysqli("localhost", "root","","sishorario");
+              $con=new mysqli("localhost", "root","root","sishorario");
               $sql = "SELECT ins_nrodocumento, ins_nombre, ins_apellido FROM tblinstructores";
 
               $proceso=mysqli_query($con, $sql);

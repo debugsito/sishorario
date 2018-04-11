@@ -1,6 +1,6 @@
 <?php
 
-$conexion = new mysqli("localhost", "root", "", "sishorario");
+$conexion = new mysqli("localhost", "root", "root", "sishorario");
 
 $sql="SELECT*FROM tbltrimestres";
 

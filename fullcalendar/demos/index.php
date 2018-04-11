@@ -39,7 +39,7 @@ if (isset($_SESSION['admin']) || isset($_SESSION['instructor'])) {
 		  
 			<?php 
 
-	$conexion=mysqli_connect('localhost','root','','sishorario');
+	$conexion=mysqli_connect('localhost','root','root','sishorario');
 
  ?>						
 		 		<br>

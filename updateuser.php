@@ -5,7 +5,7 @@ date_default_timezone_set('America/Lima');
 
 $server = 'localhost';
 $username = 'root';
-$password = '';
+$password = 'root';
 $database = 'sishorario';
 
 $conexion = mysql_connect($server,$username,$password) or die ("Error al conectar al servidor");
