@@ -73,7 +73,7 @@ if (count($users) > 0) {
     foreach ($users as $user) { ?>
 
         <?php
-        $ayudas = AyudaData::getAllUsuario($user->idUsuario);
+        $ayudas = AyudaData::getAllUsuario($user->idUsuario,3);
         if (count($ayudas) > 0) {
 
             foreach ($ayudas as $ayuda) { ?>
@@ -98,7 +98,7 @@ if (count($users) > 0) {
                         ?>
 
                         <?php
-                        $ayudas1 = AyudaData::getAllUsuario($user1->idUsuario);
+                        $ayudas1 = AyudaData::getAllUsuario($user1->idUsuario,3);
                         if (count($ayudas1) > 0) {
                             foreach ($ayudas1 as $ayuda1) {
                                 ?>
@@ -122,7 +122,7 @@ if (count($users) > 0) {
                                         ?>
 
                                         <?php
-                                        $ayudas2 = AyudaData::getAllUsuario($user2->idUsuario);
+                                        $ayudas2 = AyudaData::getAllUsuario($user2->idUsuario,3);
                                         if (count($ayudas2) > 0) {
 
                                             foreach ($ayudas2 as $ayuda2) { ?>
@@ -146,7 +146,7 @@ if (count($users) > 0) {
                                                         ?>
 
                                                         <?php
-                                                        $ayudas3 = AyudaData::getAllUsuario($user3->idUsuario);
+                                                        $ayudas3 = AyudaData::getAllUsuario($user3->idUsuario,3);
                                                         if (count($ayudas3) > 0) {
 
                                                             foreach ($ayudas3 as $ayuda3) { ?>
@@ -168,7 +168,7 @@ if (count($users) > 0) {
                                                                         ?>
 
                                                                         <?php
-                                                                        $ayudas4 = AyudaData::getAllUsuario($user4->idUsuario);
+                                                                        $ayudas4 = AyudaData::getAllUsuario($user4->idUsuario,3);
                                                                         if (count($ayudas4) > 0) {
 
                                                                             foreach ($ayudas3 as $ayuda4) { ?>
