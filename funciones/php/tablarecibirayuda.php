@@ -275,6 +275,7 @@ if (count($users) > 0) {
 
                 ?>
                 <input type="hidden" name="ultimo" value="<?php echo $ultimo; ?>">
+                <input type="hidden" name="id_ayuda" value="<?php echo $ayuda_monto->id; ?>">
             </center>
         </th>
     </tr>

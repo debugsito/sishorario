@@ -100,13 +100,21 @@ $validar->updateValidar();
 
         <td><center> <a href="#" class="btn btn-default btn-sm" style="border-radius: 100px; background-color: #12150A"><b>¡ No brindó ayuda !</b></a></center></td>
 
-        <?PHP }else{ 
+        <?PHP }elseif($ayuda->validar==2){ ?>
+        <td><center><a class='btn btn-danger btn-sm'>En proceso...</a></center></td>
+        <?php
+        }else{
           ?>
-      <td><center><a class='btn btn-info btn-sm'>En proceso ...</a></center></td>
+      <td><center><a class='btn btn-info btn-sm'>En proceso...</a></center></td>
 
      <?php } ?>
 
-    <?php } ?>
+    <?php }else{
+if($ayuda->validar==2){ ?>
+        <td><center><a class='btn btn-danger btn-sm'>¡ Voucher Rechazado !</a></center></td>
+        <?php
+        }
+      } ?>
 
 		
 <?php if($ayuda->validar==0 and $ayuda->foto!='' and $ayuda->foto!=NULL){ ?> 
@@ -136,7 +144,7 @@ $fecha_finish_ayuda = date("Y-m-d H:i:s",$mod_date_ayuda);
                    <div class="conta"></div>
                  
                  </div>
-                 dias
+                 <font size="3" color="#29B6F6"><b>días</b></font>
  </div>
 
 

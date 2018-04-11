@@ -18,7 +18,7 @@ date_default_timezone_set('America/Lima');
 
 $server = 'localhost';
 $username = 'root';
-$password = 'root';
+$password = '';
 $database = 'sishorario';
 
 try {

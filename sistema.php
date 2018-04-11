@@ -47,7 +47,7 @@ include "BrindarAyudaData.php";
 
             <?php
 
-            $conexion = mysqli_connect('localhost', 'root', 'root', 'sishorario');
+            $conexion = mysqli_connect('localhost', 'root', '', 'sishorario');
 
             $sql = "SELECT * from tblayuda where id_usuario=$idd  ";
             $result = mysqli_query($conexion, $sql);
@@ -130,7 +130,7 @@ include "BrindarAyudaData.php";
             ?>
             <?php
 
-            $conexion = mysqli_connect('localhost', 'root', 'root', 'sishorario');
+            $conexion = mysqli_connect('localhost', 'root', '', 'sishorario');
 
             $sql21 = "SELECT * from tblayuda where id_usuario=$idd order by id desc limit 1  ";
             $result21 = mysqli_query($conexion, $sql21);
@@ -172,7 +172,7 @@ include "BrindarAyudaData.php";
 
             <?php
             $monto = 0;
-            $conexion = mysqli_connect('localhost', 'root', 'root', 'sishorario');
+            $conexion = mysqli_connect('localhost', 'root', '', 'sishorario');
 
             $sql = "SELECT * from tblayuda where id_usuario=$idd order by id desc limit 1  ";
             $result = mysqli_query($conexion, $sql);
@@ -252,7 +252,8 @@ include "BrindarAyudaData.php";
 
 
                 <?php $bridas_ayudas = AyudaData::getAllAyudaUltimo($idd);
-                if (count($bridas_ayudas) > 0) { ?>
+
+                if (count($bridas_ayudas) > 0) {  ?>
                     <?php
                     foreach ($bridas_ayudas as $brida_ayuda): ?>
 
@@ -313,8 +314,12 @@ include "BrindarAyudaData.php";
 
 
                                     <?php
-                                    if ($diff_condicion_brindar->invert == 1) {
+                                    //var_dump($id); exit;
+                                    //$existe_ayuda = AyudaData::existeAyuda($id);
+                                    if ($diff_condicion_brindar->invert == 1 && $brida_ayuda->usada==0) {
                                         echo "<h3 style='color:orange'><center><b>¡Ya puede solicitar ayuda!</b></center></h3>";
+                                        } else if( $brida_ayuda->usada==1) {
+echo "<h3 style='color:orange'><center><b>¡Usted ya solicitó ayuda!</b></center></h3>";
                                     } else {
                                         ?>
 
@@ -391,12 +396,14 @@ include "BrindarAyudaData.php";
 
 
         <div class="card-content table-responsive">
-            <?php if ($diff_condicion_brindar->invert == 1) { ?>
+        <?php
+         if (count($bridas_ayudas) > 0) {  
+             if ($diff_condicion_brindar->invert == 1 && $brida_ayuda->usada==0) { ?>
                 <a href="#" class="btn btn-info" data-toggle="modal" data-target="#ModalRegistroAyuda"
                    id="btnRegistrarAyuda" onClick="this.disabled=false"><i class="fa fa-handshake-o"
                                                                            aria-hidden="true"></i>
                     Solicitar Ayuda</a>
-            <?php } ?>
+            <?php } } ?>
             <br><br>
             <div class="table" align="center">
                 <?php
@@ -598,9 +605,8 @@ include "BrindarAyudaData.php";
                         <input type="hidden" name="id_recibe" value="<?php echo $idd; ?>">
                     </div>
                     <br>
-                    <div class="form-group " align="center">
-                    </div>
-                    <button class="btn btn-info" type="submit"><i class="fa fa-handshake-o"></i><b> Solicitar Ayuda</b>
+                    
+                    <center><button class="btn btn-info" type="submit"><i class="fa fa-handshake-o"></i><b> Solicitar Ayuda</b></center>
                     </button>
                 </form>
             </div>

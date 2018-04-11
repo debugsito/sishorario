@@ -1,7 +1,7 @@
 
 	<?php
 	try{
-			$conexion = new PDO('mysql:host=localhost;dbname=sishorario','root','root');
+			$conexion = new PDO('mysql:host=localhost;dbname=sishorario','root','');
 			}catch(PDOException $e){
 				echo "Error: ". $e->getMessage();
 			}

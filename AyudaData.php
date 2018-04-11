@@ -15,7 +15,7 @@ class AyudaData {
 	}
 
 	public function updateStatus(){
-		$sql = "update ".self::$tablename." set status=$this->status where id=$this->id";
+		$sql = "update ayudas_transacciones set validar=$this->validar where id=$this->id";
 		Executor::doit($sql);
 	}
 
@@ -27,7 +27,7 @@ class AyudaData {
 	}
 
 	public static function getByIdAyda($id){
-		$sql = "select * from ".self::$tablename." where id_usuario=$id";
+		$sql = "select * from ayudas_transacciones where id=$id";
 		$query = Executor::doit($sql);
 		return Model::one($query[0],new AyudaData());
 
@@ -89,13 +89,12 @@ class AyudaData {
 		return Model::many($query[0],new AyudaData());
 	}
 
-	
-
-
-
-
-
+	public function existeAyuda($id){
+		var_dump($id); exit;
+		$sql = "select * from ayudas_transacciones where id_tblayuda=$id limit 1";
+		$query = Executor::doit($sql);
+		$result = Model::one($query[0],new AyudaData());
+		var_dump($result); exit;
+	}
 
 }
-
-?>

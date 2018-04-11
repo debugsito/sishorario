@@ -58,7 +58,7 @@ include 'views/logic/footer.php';
 
 <?php 
 
-$conexion=mysqli_connect('localhost','root','root','sishorario');
+$conexion=mysqli_connect('localhost','root','','sishorario');
 
 		$sql="SELECT * from tblusuarios where idUsuario=$idd ";
 		$result=mysqli_query($conexion,$sql);

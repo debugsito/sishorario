@@ -6,6 +6,6 @@
 
 .contador .label {font-size: 5px; font-weight:600; letter-spacing:1px; position:relative;}
 
-.contador .block {display: inline-block; padding-top: 0px; margin: 0 0px 0px;  width: 10%; font-size: 15px; font-weight:bold; }
+.contador .block {display: inline-block; padding-top: 0px; margin: 0 0px 0px;  width: 10%; font-size: 9px; font-weight:bold; }
 
-.contador .conta {padding: 0px 31px 0px 2px;}
+.contador .conta {padding: 6px 33px 4px 0px;}

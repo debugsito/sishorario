@@ -31,7 +31,11 @@ class AyudasTransacciones {
 		Executor::doit($sql);
 	}
 
-	public function crearTransaccion($ayuda,$monto,$id_recibe, $queda_disponible, $estado){
+	public function crearTransaccion($ayuda,$monto,$id_recibe, $queda_disponible, $estado, 
+		$id_ayuda_usada){
+		//terminado ayuda
+		$sql = "update tblayuda set usada=1  where id=$id_ayuda_usada";
+        Executor::doit($sql);
 //        estado =  0->no ha sido tomado 1->ha sido tomado 2-> ha sido tomado parcialmente
 //            status = 0->en proceso 1-> rechazado 2-> asignado 3->confirmado
         $sql = "update tblayuda set bono_consumido=1, para_consumir=$queda_disponible, status=2, estado = $estado  where id=$ayuda->id";

@@ -12,9 +12,8 @@ $ayuda = BrindarAyudaData::getById($_GET["id"]);
 $ayuda->updateValidar();
 
 $ayuda = AyudaData::getByIdAyda($_GET['id_ayuda']);
-
-$validar = AyudaData::getById($ayuda->id);
-$validar->status=3;
+//1 aceptado
+$validar->validar=1;
 $validar->updateStatus();
 header("Location: sistema.php");
  ?>

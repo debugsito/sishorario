@@ -9,13 +9,14 @@ include "TblBancosData.php";
 
 
 $rechazar = UsuarioData::getById($_GET["id"]);
+
 $rechazar->updateEstado();
 
-$ayuda = AyudaData::getByIdAyda($_GET['id']);
-
-$validar = AyudaData::getById($ayuda->id);
-$validar->status=1;
-$validar->updateStatus();
+//$ayuda = AyudaData::getByIdAyda($_GET['id_ayuda']);
+$ayuda = AyudaData::getByIdAyda($_GET['id_ayuda']);
+//2 rechazado
+$ayuda->validar=2;
+$ayuda->updateStatus();
 	
 header("Location: sistema.php");
  ?>

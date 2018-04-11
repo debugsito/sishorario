@@ -39,7 +39,7 @@ $hora=$today["hours"];
 if ($hora<6) { 
 echo("Hoy has madrugado mucho ,"); 
 }elseif($hora<12){ 
-echo("Buenos días estimado(a) participante ,"); 
+echo("Buenos d&iacuteas estimado(a) participante ,"); 
 }elseif($hora<=18){ 
 echo("Buenas Tardes estimado(a) participante ,"); 
 }else{ echo("Buenas Noches estimado(a) participante ,"); } 
@@ -103,7 +103,7 @@ $hora=$today["hours"];
 if ($hora<6) { 
 echo("Hoy has madrugado mucho . . . "); 
 }elseif($hora<12){ 
-echo("Buenos días estimado(a) participante . . ."); 
+echo("Buenos d&iacuteas estimado(a) participante . . ."); 
 }elseif($hora<=18){ 
 echo("Buenas Tardes estimado(a) participante . . ."); 
 }else{ echo("Buenas Noches estimado(a) participante . . ."); } 

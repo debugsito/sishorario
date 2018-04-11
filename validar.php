@@ -68,7 +68,7 @@ $entidad="";
 								<input  name="id_ayuda" type="hidden" value="<?php echo $_GET['id_ayuda']; ?>" required="">
 						
 
-						<a class='btn btn-danger btn-sm' href='rechazar.php?id=<?php echo $_GET['id_usu']; ?>&id_ayuda=<?php echo $_GET['id']; ?>'><i class='material-icons'>delete_forever</i> Rechazar Foto</a>
+						<a class='btn btn-danger btn-sm' href='rechazar.php?id=<?php echo $_GET['id_usu']; ?>&id_ayuda=<?php echo $_GET['id_ayuda']; ?>'><i class='material-icons'>delete_forever</i> Rechazar Foto</a>
  
 
 						<a class='btn btn-success btn-sm' href="voucherup.php?id=<?php echo $_GET['id_ayuda']; ?>&id_ayuda=<?php echo $_GET['id_usu']; ?>"><i class='material-icons'>check_circle</i> Validar Foto</a>

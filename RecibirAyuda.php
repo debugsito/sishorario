@@ -1,15 +1,17 @@
 <?php
 include "autoload.php";
-include "UsuarioData.php";
-include "AyudaData.php";
-include "BrindarAyudaData.php";
+include( dirname(__FILE__) .'/UsuarioData.php');
+include( dirname(__FILE__) .'/AyudaData.php');
+include( dirname(__FILE__) .'/BrindarAyudaData.php');
 include "funciones/php/AyudasTransacciones.php"
 ?>
+
 <?php
 $subtotal1 = $_POST['monto'];
 ?>
 <?php
 $id_recibe = $_POST['id_recibe'];
+$id_ayuda = $_POST['id_ayuda'];
 $monto = (double) $_POST['monto'];
 $user = UsuarioData::getByUsuario($id_recibe);
 //$usuarios_ayuda = UsuarioData::getAllUsuarioIds($user->id_patrocinador);
@@ -18,21 +20,26 @@ $total_ayuda = $ayudas['total'][0]->disponible;
 $ayudas = $ayudas['ayudas'];
 if($total_ayuda> $monto ){
     foreach ($ayudas as $ayuda){
+        
+
         $disponible = (double)$ayuda->para_consumir;
+        
         //        estado =  0->no ha sido tomado 1->ha sido tomado 2-> ha sido tomado parcialmente
         if($disponible < $monto ){
             //el ultimo es lo que queda para consumir
-            AyudasTransacciones::crearTransaccion($ayuda,$monto,$id_recibe,0,1);
-            $monto-=$disponible;
+            AyudasTransacciones::crearTransaccion($ayuda,$disponible,$id_recibe,0,1,$id_ayuda);
+            $monto=$monto-$disponible;
         }elseif ($disponible == $monto){
-            AyudasTransacciones::crearTransaccion($ayuda,$monto,$id_recibe,0 ,1);
-            $monto-=$disponible;
+            AyudasTransacciones::crearTransaccion($ayuda,$monto,$id_recibe,0 ,1,$id_ayuda);
+            $monto=$monto-$disponible;
             break;
         }else{
-            AyudasTransacciones::crearTransaccion($ayuda,$monto,$id_recibe,$disponible-$monto,2);
+            AyudasTransacciones::crearTransaccion($ayuda,$monto,$id_recibe,$disponible-$monto,2,
+                $id_ayuda);
+            $monto = 0;
             break;
         }
-    } ?>
+    }?>
     <script type="text/javascript">alert('Ayuda realizada...')</script>
     <script>window.location.replace('sistema.php');</script>
     <?php
