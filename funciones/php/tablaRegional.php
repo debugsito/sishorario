@@ -33,10 +33,14 @@
 
   <?php
   $ayudas1 = BrindarAyudaData::getByUserBrinda($idd);
+  $puede_brindar_ayuda = true;
   if(count($ayudas1)>0){
     ?>
     <?php
-    foreach($ayudas1 as $ayuda1){ 
+    foreach($ayudas1 as $ayuda1){
+        if($ayuda1->validar==0){
+            $puede_brindar_ayuda=false;
+        }
       ?>
       <tr <?php if($ayuda1->validar==1){ ?> style="background-color: #FFEE58;" <?php } ?>>
         <td> </td>
@@ -91,12 +95,13 @@
             });
           </script>
 
-          <?php if($ayuda1->validar==0){ ?> 
+          <?php if($ayuda1->validar==0){ ?>
 
           <td style="width: 30%;">
             <center>
 
-              <?php    
+              <?php
+
               if($ayuda1->validar==0){
                 if($ayuda1->foto=='' and $ayuda1->foto==NULL){
                   $mod_date_ayuda1= strtotime($fecha_db1."+ 3 days");
@@ -130,7 +135,9 @@
 
              <?php } else if($ayuda1->validar==2){
       echo "<td><center><a class='btn btn-danger btn-xs'><b>¡ Voucher Rechazado !</b></a></center></td>";              
-              } else { ?>
+              }else if($ayuda1->validar==1){
+              echo "<td><center><a class='btn btn-success btn-xs'><b>¡ Foto confirmada !</b></a></center></td>";
+          } else { ?>
 
              <td><center><a class='btn btn-info btn-xs'><b>¡ Depósito realizado !</b></a></center></td>
 
