@@ -40,8 +40,12 @@ class AyudaData {
 		return Model::many($query[0],new AyudaData());
 	}
 
-	public static function getAllUsuario($id){
-		$sql = "select * from ".self::$tablename." where id_usuario=$id and bono_consumido=0";
+	public static function getAllUsuario($id, $estado=null){
+		$sql = "select * from ".self::$tablename." where id_usuario=$id and bono_consumido=0 ";
+        if ($estado){
+            $sql = $sql . "and status=$estado ";
+        }
+
 		$query = Executor::doit($sql);
 		return Model::many($query[0],new AyudaData());
 	}
@@ -57,7 +61,7 @@ class AyudaData {
         $sql = "select sum(para_consumir) as disponible from ".self::$tablename." where para_consumir>0 and (estado=0 or estado=2) and status=0";
         $query = Executor::doit($sql);
 
-        $sql2 = "select * from ".self::$tablename." where para_consumir>0 and (estado=0 or estado=2) and status=0 ORDER BY RAND()";
+        $sql2 = "select * from ".self::$tablename." where para_consumir>0 and (estado=0 or estado=2) and status=0 ORDER BY fecha asc";
 		$query2 = Executor::doit($sql2);
 		return array('total'=>Model::many($query[0],new AyudaData()),'ayudas'=>Model::many($query2[0],new AyudaData())) ;
 	}
