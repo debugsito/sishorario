@@ -2,7 +2,7 @@
 
 session_start();
 
-	$conexion = new mysqli("localhost", "root", "root", "sishorario");
+	$conexion = new mysqli("localhost", "root", "", "sishorario");
  
 
 

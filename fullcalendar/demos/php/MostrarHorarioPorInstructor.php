@@ -1,6 +1,6 @@
 <?php
     
-    $connection=new mysqli("localhost", "root", "root", "sishorario");
+    $connection=new mysqli("localhost", "root", "", "sishorario");
 
             $ins=$_GET['instructor'];
                  

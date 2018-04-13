@@ -28,7 +28,7 @@ date_default_timezone_set('America/Lima');
 
 $server = 'localhost';
 $username = 'root';
-$password = 'root';
+$password = '';
 $database = 'sishorario';
 
 try {
@@ -57,7 +57,7 @@ try {
 
 <?php 
 
-$conexion=mysqli_connect('localhost','root','root','sishorario');
+$conexion=mysqli_connect('localhost','root','','sishorario');
 
 		$sql="SELECT * from tblusuarios where idUsuario=$idd ";
 		$result=mysqli_query($conexion,$sql);
@@ -269,7 +269,7 @@ select {
 <select type="select" name="entidad" <?php if($contador!=0){ echo  "disabled"; } ?>  class="form-control" id="entidad" required>
  						   <OPTION value="">Entidad Financiera</OPTION>
 							<?php
-								$con = new Mysqli("localhost", "root", "root", "sishorario");
+								$con = new Mysqli("localhost", "root", "", "sishorario");
 								$sql="SELECT * FROM bancos ORDER BY id_banco";
 								$proceso = mysqli_query($con, $sql);
 

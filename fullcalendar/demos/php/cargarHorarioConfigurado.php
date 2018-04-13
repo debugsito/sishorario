@@ -1,7 +1,7 @@
 <?php
 
 $instructor =$_GET['instructor'];
-$conexion = new mysqli("localhost", "root", "root", "sishorario");
+$conexion = new mysqli("localhost", "root", "", "sishorario");
 
 $sql="SELECT*FROM tblconfiguracionhorario WHERE instructor =$instructor";
 

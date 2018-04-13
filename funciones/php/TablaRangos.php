@@ -46,7 +46,7 @@ $idd= $_SESSION['id'];
 
 <?php 
 
-$conexion=mysqli_connect('localhost','root','root','sishorario');
+$conexion=mysqli_connect('localhost','root','','sishorario');
 $contador=0;
 		$sql="SELECT * from tblusuarios where id_patrocinador=$idd ";
 		$result=mysqli_query($conexion,$sql);
