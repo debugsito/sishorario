@@ -8,22 +8,20 @@ include "funciones/php/AyudasTransacciones.php"
 
 <?php
 $subtotal1 = $_POST['monto'];
-?>
-<?php
+$ayudas_ids = $_POST['ayudas_ids'];
 $id_recibe = $_POST['id_recibe'];
 $id_ayuda = $_POST['id_ayuda'];
 $monto = (double) $_POST['monto'];
 $user = UsuarioData::getByUsuario($id_recibe);
 //$usuarios_ayuda = UsuarioData::getAllUsuarioIds($user->id_patrocinador);
-$ayudas = AyudaData::getTotalAyuda();
+$ayudas = AyudaData::getTotalAyuda($id_recibe);
 $total_ayuda = $ayudas['total'][0]->disponible;
 $ayudas = $ayudas['ayudas'];
 if($total_ayuda> $monto ){
+    AyudasTransacciones::registrarBonos($ayudas_ids,$id_recibe);
     foreach ($ayudas as $ayuda){
-        
 
         $disponible = (double)$ayuda->para_consumir;
-        
         //        estado =  0->no ha sido tomado 1->ha sido tomado 2-> ha sido tomado parcialmente
         if($disponible < $monto ){
             //el ultimo es lo que queda para consumir

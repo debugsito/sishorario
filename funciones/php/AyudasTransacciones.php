@@ -49,4 +49,15 @@ class AyudasTransacciones {
 
     }
 
+    public function registrarBonos($ayudas_ids,$id_recibe){
+	    $ayudas = json_decode($ayudas_ids);
+
+	    foreach ($ayudas as $ayuda){
+            $sql = "insert into bonos_cobrados (id_user_cobra,id_tblayuda,monto) values (
+              $id_recibe, $ayuda->id, $ayuda->monto
+            )";
+            Executor::doit($sql);
+        }
+    }
+
 }

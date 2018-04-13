@@ -27,7 +27,9 @@
         color: white;
     }
 </style>
-<?php $usuario = UsuarioData::getByUsuario1($idd); ?>
+<?php
+$ayudas_id = [];
+$usuario = UsuarioData::getByUsuario1($idd); ?>
 <?php $contador = 0; ?>
 <?php $sumar1 = 0;
 $sumar2 = 0;
@@ -68,17 +70,18 @@ if (count($userser) > 0) {
 <?php
 //echo $usuario->idUsuario.'Patrocinador';
 $users = UsuarioData::getAllUsuario($usuario->idUsuario);
-
+$ayudas_usadas = AyudaData::getAyudasUsadasByIdUsuario($usuario->idUsuario);
 if (count($users) > 0) {
     foreach ($users as $user) { ?>
 
         <?php
-        $ayudas = AyudaData::getAllUsuario($user->idUsuario,3);
+        $ayudas = AyudaData::getAllUsuario($user->idUsuario,$ayudas_usadas->ayudas_ids,3);
         if (count($ayudas) > 0) {
 
-            foreach ($ayudas as $ayuda) { ?>
-                <?php $sumar1 = (($ayuda->monto * 10) / 100) + $sumar1; ?>
-            <?php } ?>
+            foreach ($ayudas as $ayuda) {
+                $sumar1 = (($ayuda->monto * 10) / 100) + $sumar1;
+                $ayudas_id[] = ['id'=>$ayuda->id,'monto'=>$sumar1];
+            } ?>
         <?php } ?>
 
         <?php if ($contador > 9) { ?>
@@ -98,12 +101,12 @@ if (count($users) > 0) {
                         ?>
 
                         <?php
-                        $ayudas1 = AyudaData::getAllUsuario($user1->idUsuario,3);
+                        $ayudas1 = AyudaData::getAllUsuario($user1->idUsuario,$ayudas_usadas->ayudas_ids,3);
                         if (count($ayudas1) > 0) {
                             foreach ($ayudas1 as $ayuda1) {
-                                ?>
-                                <?php $sumar2 = (($ayuda1->monto * 5) / 100) + $sumar2; ?>
-                                <?php if ($user1->fechas < '2018-04-05') {
+                                $sumar2 = (($ayuda1->monto * 5) / 100) + $sumar2;
+                                $ayudas_id[] = ['id'=>$ayuda->id,'monto'=>$sumar2];
+                                if ($user1->fechas < '2018-04-05') {
                                 }
                             } ?>
                         <?php }
@@ -122,12 +125,13 @@ if (count($users) > 0) {
                                         ?>
 
                                         <?php
-                                        $ayudas2 = AyudaData::getAllUsuario($user2->idUsuario,3);
+                                        $ayudas2 = AyudaData::getAllUsuario($user2->idUsuario,$ayudas_usadas->ayudas_ids,3);
                                         if (count($ayudas2) > 0) {
 
-                                            foreach ($ayudas2 as $ayuda2) { ?>
-                                                <?php $sumar3 = (($ayuda2->monto * 2.5) / 100) + $sumar3; ?>
-                                                <?php if ($user2->fechas < '2018-04-05') {
+                                            foreach ($ayudas2 as $ayuda2) {
+                                                $sumar3 = (($ayuda2->monto * 2.5) / 100) + $sumar3;
+                                                $ayudas_id[] = ['id'=>$ayuda->id,'monto'=>$sumar3];
+                                                if ($user2->fechas < '2018-04-05') {
                                                 }
                                             } ?>
                                         <?php } ?>
@@ -146,12 +150,12 @@ if (count($users) > 0) {
                                                         ?>
 
                                                         <?php
-                                                        $ayudas3 = AyudaData::getAllUsuario($user3->idUsuario,3);
+                                                        $ayudas3 = AyudaData::getAllUsuario($user3->idUsuario,$ayudas_usadas->ayudas_ids,3);
                                                         if (count($ayudas3) > 0) {
-
-                                                            foreach ($ayudas3 as $ayuda3) { ?>
-                                                                <?php $sumar4 = (($ayuda3->monto * 1) / 100) + $sumar4; ?>
-                                                                <?php if ($user3->fechas < '2018-04-05') {
+                                                            foreach ($ayudas3 as $ayuda3) {
+                                                                $sumar4 = (($ayuda3->monto * 1) / 100) + $sumar4;
+                                                                $ayudas_id[] = ['id'=>$ayuda->id,'monto'=>$sumar4];
+                                                                if ($user3->fechas < '2018-04-05') {
                                                                 }
                                                             } ?>
                                                         <?php } ?>
@@ -168,12 +172,13 @@ if (count($users) > 0) {
                                                                         ?>
 
                                                                         <?php
-                                                                        $ayudas4 = AyudaData::getAllUsuario($user4->idUsuario,3);
+                                                                        $ayudas4 = AyudaData::getAllUsuario($user4->idUsuario,$ayudas_usadas->ayudas_ids,3);
                                                                         if (count($ayudas4) > 0) {
 
-                                                                            foreach ($ayudas3 as $ayuda4) { ?>
-                                                                                <?php $sumar5 = (($ayuda4->monto * 0.5) / 100) + $sumar5; ?>
-                                                                                <?php if ($user4->fechas < '2018-04-05') {
+                                                                            foreach ($ayudas3 as $ayuda4) {
+                                                                                $sumar5 = (($ayuda4->monto * 0.5) / 100) + $sumar5;
+                                                                                $ayudas_id[] = ['id'=>$ayuda->id,'monto'=>$sumar5];
+                                                                                if ($user4->fechas < '2018-04-05') {
                                                                                 }
                                                                             } ?>
                                                                         <?php } ?>
@@ -225,7 +230,7 @@ if (count($users) > 0) {
 <?php $sumar_total = $sumar1 + $sumar2 + $sumar3 + $sumar4 + $sumar5; ?>
 
 <?php 
-//$ayuda_monto = AyudaData::getByAyuda($idd); 
+//$ayuda_monto = AyudaData::getByAyuda($idd);
 $ayuda_monto = $ayuda_usar; 
 ?>
 <table class='table' id="customers">
@@ -277,6 +282,7 @@ $ayuda_monto = $ayuda_usar;
                 $subtotal = $cadena - $ultimo;
 
                 ?>
+                <input type="hidden" name="ayudas_ids" value='<?php echo json_encode($ayudas_id); ?>'>
                 <input type="hidden" name="ultimo" value="<?php echo $ultimo; ?>">
                 <input type="hidden" name="id_ayuda" value="<?php echo $ayuda_monto->id; ?>">
             </center>

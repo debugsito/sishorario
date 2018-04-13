@@ -19,14 +19,14 @@ class AyudaData {
 		Executor::doit($sql);
 	}
 
-	public static function getById($id){
+	public function getById($id){
 		$sql = "select * from ".self::$tablename." where id=$id";
 		$query = Executor::doit($sql);
 		return Model::one($query[0],new AyudaData());
 
 	}
 
-	public static function getByIdAyda($id){
+	public function getByIdAyda($id){
 		$sql = "select * from ayudas_transacciones where id=$id";
 		$query = Executor::doit($sql);
 		return Model::one($query[0],new AyudaData());
@@ -40,8 +40,11 @@ class AyudaData {
 		return Model::many($query[0],new AyudaData());
 	}
 
-	public static function getAllUsuario($id, $estado=null){
-		$sql = "select * from ".self::$tablename." where id_usuario=$id and bono_consumido=0 ";
+	public static function getAllUsuario($id, $ayudas_ids=null,$estado=null){
+		$sql = "select * from ".self::$tablename." where id_usuario=$id and para_consumir>0 ";
+		if(!empty($ayudas_ids)){
+            $sql = $sql . " and id not in ($ayudas_ids) ";
+        }
         if ($estado){
             $sql = $sql . "and status=$estado ";
         }
@@ -56,12 +59,14 @@ class AyudaData {
 		return Model::many($query[0],new AyudaData());
 	}
 
-	public static function getTotalAyuda(){
+	public static function getTotalAyuda($id_user_recibe){
 //        $users_brindan = implode(',',$users_brindan);
-        $sql = "select sum(para_consumir) as disponible from ".self::$tablename." where para_consumir>0 and (estado=0 or estado=2) and status=0";
+        $sql = "select sum(para_consumir) as disponible from ".self::$tablename." where para_consumir>0 and 
+        (estado=0 or estado=2) and status=0 and id_usuario <>$id_user_recibe";
         $query = Executor::doit($sql);
 
-        $sql2 = "select * from ".self::$tablename." where para_consumir>0 and (estado=0 or estado=2) and status=0 ORDER BY fecha asc";
+        $sql2 = "select * from ".self::$tablename." where para_consumir>0 and (estado=0 or estado=2) and status=0 
+        and id_usuario <>$id_user_recibe ORDER BY fecha asc";
 		$query2 = Executor::doit($sql2);
 		return array('total'=>Model::many($query[0],new AyudaData()),'ayudas'=>Model::many($query2[0],new AyudaData())) ;
 	}
@@ -100,5 +105,11 @@ class AyudaData {
 		$result = Model::one($query[0],new AyudaData());
 		var_dump($result); exit;
 	}
+
+    public function getAyudasUsadasByIdUsuario($idd){
+        $sql = "SELECT group_concat(DISTINCT(id_tblayuda)) as ayudas_ids from bonos_cobrados  where id_user_cobra=$idd and estado=1";
+        $query = Executor::doit($sql);
+        return Model::one($query[0],new AyudaData());
+    }
 
 }
