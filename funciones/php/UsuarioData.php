@@ -53,4 +53,9 @@ class UsuarioData {
         return Model::one($query[0],new UsuarioData());
     }
 
+    public function updateEstado(){
+        $sql = "update ".self::$tablename." set estado=1 where idUsuario=$this->idUsuario";
+        Executor::doit($sql);
+    }
+
 }

@@ -230,8 +230,10 @@ if (count($users) > 0) {
 <?php $sumar_total = $sumar1 + $sumar2 + $sumar3 + $sumar4 + $sumar5; ?>
 
 <?php 
-//$ayuda_monto = AyudaData::getByAyuda($idd);
-$ayuda_monto = $ayuda_usar; 
+$ayudas = AyudaData::getAyudasByUsuario($idd)->ayudas;
+
+$ayuda_monto = $ayuda_usar;
+$porcentaje = $ayudas>0?30:50;
 ?>
 <table class='table' id="customers">
     <tr>
@@ -258,7 +260,7 @@ $ayuda_monto = $ayuda_usar;
             <center><?php echo $ayuda_monto->monto; ?> </center>
         </td>
         <td>
-            <center> <?php echo ($ayuda_monto->monto * 50) / 100 ?> </center>
+            <center> <?php echo ($ayuda_monto->monto * $porcentaje) / 100 ?> </center>
         </td>
         <td>
             <center> <?php echo number_format($sumar_total, 2); ?></center>

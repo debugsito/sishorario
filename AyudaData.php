@@ -112,4 +112,15 @@ class AyudaData {
         return Model::one($query[0],new AyudaData());
     }
 
+    public function rechazarValidacionTransaccion($id){
+        $sql = "update ayudas_transacciones set validar=2 where id=$id";
+        Executor::doit($sql);
+    }
+
+    public function getAyudasByUsuario($idd){
+        $sql = "SELECT count(*) as ayudas from ayudas_transacciones where id_user_recibe=$idd  and status=1 ";
+        $query = Executor::doit($sql);
+        return Model::one($query[0],new AyudaData());
+    }
+
 }
