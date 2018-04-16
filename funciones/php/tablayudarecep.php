@@ -74,7 +74,7 @@ $diff_condicion = $fecha_condicion_hoy->diff($fecha_condicion);
 
 <?php   
 if($diff_condicion->invert == 1 and $ayuda->foto!='' and $ayuda->foto!=NULL) {
-$validar = BrindarAyudaData::getByAyuda($ayuda);
+$validar = BrindarAyudaData::getByAyuda($ayuda->id);
 $validar->updateValidar();
 }
 ?>

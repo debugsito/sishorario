@@ -22,6 +22,7 @@ class BrindarAyudaData {
 	}
 
 	public function updateValidar(){
+	    var_dump($this->id); exit;
 		$sql = "update ayudas_transacciones set validar=1 where id=$this->id";
 		Executor::doit($sql);
 	}
@@ -32,9 +33,8 @@ class BrindarAyudaData {
 		return Model::one($query[0],new BrindarAyudaData());
 
 	}
-	public static function getByAyuda($ayuda){
-		$sql = "select * from ayudas_transacciones where id_user_ayuda= $ayuda->id_user_ayuda and id_tblayuda=$ayuda->id_tblayuda
-		and id_user_recibe=$ayuda->id_user_recibe and created_at = $ayuda->created_at and status=1";
+	public static function getByAyuda($ayuda_id){
+		$sql = "select * from ayudas_transacciones where id=$ayuda_id and status=1";
 		$query = Executor::doit($sql);
 		return Model::one($query[0],new BrindarAyudaData());
 
