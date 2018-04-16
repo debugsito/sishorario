@@ -91,7 +91,7 @@ include "funciones/php/AyudasTransacciones.php";
                             </center>
                         </td>
 
-                    <?php } elseif ( $ayuda1->validar==2 || $fecha_finish_ayuda1 > date("Y-m-d H:i:s")){
+                    <?php } elseif ( $ayuda1->validar==2 || $fecha_finish_ayuda1 <= date("Y-m-d H:i:s")){
                         echo "<td><a class='btn btn-danger btn-sm'>-</a></td>";
                     } else { ?>
 
