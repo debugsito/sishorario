@@ -62,7 +62,7 @@ class AyudaData {
 	public static function getTotalAyuda($id_user_recibe){
 //        $users_brindan = implode(',',$users_brindan);
         $sql = "select sum(para_consumir) as disponible from ".self::$tablename." where para_consumir>0 and 
-        (estado=0 or estado=2) and status=0 and id_usuario <>$id_user_recibe";
+        (estado=0 or estado=2) and id_usuario <>$id_user_recibe order by fecha asc";
         $query = Executor::doit($sql);
 
         $sql2 = "select * from ".self::$tablename." where para_consumir>0 and (estado=0 or estado=2) and status=0 
