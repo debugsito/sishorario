@@ -46,7 +46,11 @@ include "funciones/php/AyudasTransacciones.php";
             ?>
             <?php
             foreach ($ayudas1 as $ayuda1) {
-                if ($ayuda1->validar == 0) {
+                $fecha_db1 = $ayuda1->created_at;
+                $mod_date_ayuda1 = strtotime($fecha_db1 . "+ 3 days");
+                $fecha_finish_ayuda1 = date("Y-m-d H:i:s", $mod_date_ayuda1);
+
+                if ($ayuda1->validar == 0 && $fecha_finish_ayuda1 <= date("Y-m-d H:i:s")) {
                     $puede_brindar_ayuda = false;
                 }
                 ?>
@@ -77,10 +81,7 @@ include "funciones/php/AyudasTransacciones.php";
                     </form>
 
 
-                    <?php $fecha_db1 = $ayuda1->created_at;
-                    $mod_date_ayuda1 = strtotime($fecha_db1 . "+ 3 days");
-                    $fecha_finish_ayuda1 = date("Y-m-d H:i:s", $mod_date_ayuda1);
-
+                    <?php
 
                     if ($ayuda1->validar == 1) { ?>
 
