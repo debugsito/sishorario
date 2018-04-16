@@ -22,7 +22,7 @@ class BrindarAyudaData {
 	}
 
 	public function updateValidar(){
-	    var_dump($this->id); exit;
+//	    var_dump($this->id); exit;
 		$sql = "update ayudas_transacciones set validar=1 where id=$this->id";
 		Executor::doit($sql);
 	}
