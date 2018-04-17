@@ -45,7 +45,15 @@ if(count($ayudas)>0){
         ?>
         <tr <?php if($ayuda->validar==1){ ?> style="background-color: #D4E157;" <?php } ?> >
         <td> </td>
-        <td><center><?php echo $ayuda->getUsuario()->nombres; ?></center></td>
+            <?php $patrocinador = UsuarioData::getByPatrocinador($ayuda->getUsuario2()->id_patrocinador); ?>
+        <td><a href="#" data-toggle="popover" title="<?php echo 'Celular: ' . $ayuda->getUsuario()->celular; ?>"
+               data-content="<?php if ($ayuda->getUsuario2()->id_patrocinador != 0) {
+                   echo 'Patrocinador: ' . $patrocinador->nombres.'<br>';
+                   echo 'Cel Patrocinador: ' . $ayuda->getUsuario2()->celular;
+               } ?>"
+            >
+                <center><?php echo $ayuda->getUsuario()->nombres; ?></center>
+            </a></td>
         <td><center><b>S/. <?php echo $ayuda->monto; ?></b></center></td>
         <td><center><?php echo $ayuda->getUsuario2()->nombres; ?></center></td>
         <td><center><?php echo $ayuda->created_at; ?></center></td>
@@ -169,5 +177,10 @@ $fecha_finish_ayuda = date("Y-m-d H:i:s",$mod_date_ayuda);
 
 ?>
 </table>
+    <script>
+        $(document).ready(function () {
+            $('[data-toggle="popover"]').popover({html:true});
+        });
+    </script>
 </head>
 
