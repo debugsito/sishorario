@@ -63,7 +63,7 @@ include "funciones/php/AyudasTransacciones.php";
                         <center><b>S/. <?php echo $ayuda1->monto; ?></b></center>
                     </td>
                     <?php $patrocinador = UsuarioData::getByPatrocinador($ayuda1->getUsuario2()->id_patrocinador); ?>
-                    <td><a href="#" data-toggle="popover" title="<?php echo 'DNI: ' . $ayuda1->getUsuario()->celular; ?>"
+                    <td><a href="#" data-toggle="popover" title="<?php echo 'Celular: ' . $ayuda1->getUsuario()->celular; ?>"
                            data-content="<?php if ($ayuda1->getUsuario2()->id_patrocinador != 0) {
                                echo 'PATROCINADOR: ' . $patrocinador->nombres;
                            } ?>"
