@@ -62,13 +62,13 @@ class AyudaData {
 	public static function getTotalAyuda($id_user_recibe){
 //        $users_brindan = implode(',',$users_brindan);
         $sql = "select sum(para_consumir) as disponible from ".self::$tablename." where para_consumir>0 and 
-        (estado=0 or estado=2) and id_usuario <>$id_user_recibe order by fecha asc";
+        (estado=0 or estado=2) and id_usuario <>$id_user_recibe order by id asc";
         $query = Executor::doit($sql);
 
-        $sql2 = "select * from ".self::$tablename." where para_consumir>0 and (estado=0 or estado=2) and status=0 
-        and id_usuario <>$id_user_recibe ORDER BY fecha asc";
-		$query2 = Executor::doit($sql2);
-		return array('total'=>Model::many($query[0],new AyudaData()),'ayudas'=>Model::many($query2[0],new AyudaData())) ;
+        $sql2 = "select * from ".self::$tablename." where para_consumir>0 and (estado=0 or estado=2) 
+        and id_usuario <>$id_user_recibe ORDER BY id asc";
+        $query2 = Executor::doit($sql2);
+        return array('total'=>Model::many($query[0],new AyudaData()),'ayudas'=>Model::many($query2[0],new AyudaData())) ;
 	}
 
 	public static function getByMontoSuma2($monto){
