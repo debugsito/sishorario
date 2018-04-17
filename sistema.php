@@ -311,10 +311,10 @@ include "BrindarAyudaData.php";
 
                                     //var_dump($id); exit;
                                     //$existe_ayuda = AyudaData::existeAyuda($id);
-                                    if ($diff_condicion_brindar->invert == 1 && $brida_ayuda->usada==0) {
+                                    if ($diff_condicion_brindar->invert == 1 && $brida_ayuda->usada == 0) {
                                         echo "<h3 style='color:orange'><center><b>¡Ya puede solicitar ayuda!</b></center></h3>";
-                                        } else if( $brida_ayuda->usada==1) {
-echo "<h3 style='color:orange'><center><b>¡Usted ya solicitó ayuda!</b></center></h3>";
+                                    } else if ($brida_ayuda->usada == 1) {
+                                        echo "<h3 style='color:orange'><center><b>¡Usted ya solicitó ayuda!</b></center></h3>";
                                     } else {
                                         ?>
 
@@ -391,24 +391,38 @@ echo "<h3 style='color:orange'><center><b>¡Usted ya solicitó ayuda!</b></cente
 
 
         <div class="card-content table-responsive">
-        <?php
+            <?php
             $ayuda_usar = null;
-            $ya_uso= false;
+            $ya_uso = false;
+            //            var_dump($bridas_ayudas); exit;
             if (count($bridas_ayudas) > 0) {
-                foreach ($bridas_ayudas as $key => $value) {
+                /*foreach ($bridas_ayudas as $key => $value) {
                     if($value->usada==0){
                         $ayuda_usar = $value;
                     }else{
                         $ya_uso=true;
                     }
+                }*/
+                if ($diff_condicion_brindar->invert == 1 && $bridas_ayudas[0]->para_consumir == 0 &&
+                    $puede_brindar_ayuda
+                ) {
+                    $id_tblayuda = $bridas_ayudas[0]->id;
+                    $sql = "SELECT sum(monto) as total from ayudas_transacciones where id_tblayuda=$id_tblayuda and validar=0";
+                    $result = mysqli_query($conexion, $sql);
+                    if (count($result) > 0) {
+                        $resultado = (double)mysqli_fetch_row($result)[0];
+                        if ($resultado == $bridas_ayudas[0]->monto) {
+                            ?>
+                            <a href="#" class="btn btn-info" data-toggle="modal" data-target="#ModalRegistroAyuda"
+                               id="btnRegistrarAyuda" onClick="this.disabled=false"><i class="fa fa-handshake-o"
+                                                                                       aria-hidden="true"></i>
+                                Solicitar Ayuda</a>
+                            <?php
+                        }
+                    }
+                    $transacciones = '';
                 }
-                if ($diff_condicion_brindar->invert == 1 && $bridas_ayudas[0]->usada==0 &&
-                    $puede_brindar_ayuda && !$ya_uso) { ?>
-                    <a href="#" class="btn btn-info" data-toggle="modal" data-target="#ModalRegistroAyuda"
-                       id="btnRegistrarAyuda" onClick="this.disabled=false"><i class="fa fa-handshake-o"
-                                                                               aria-hidden="true"></i>
-                        Solicitar Ayuda</a>
-                <?php } } ?>
+            } ?>
             <br><br>
             <div class="table" align="center">
                 <?php
@@ -538,7 +552,7 @@ echo "<h3 style='color:orange'><center><b>¡Usted ya solicitó ayuda!</b></cente
                                 <button class="btn btn-warning" type="submit" style=" margin-top: 18px;"><i
                                             class="fa fa-child"></i><b> Brindar Ayuda</b></button>
                                 <?php // } else {
-                                    //echo "<br><a class='btn btn-danger btn-sm'>Tiene que concretar sus ayudas pendientes para continuar</a>";
+                                //echo "<br><a class='btn btn-danger btn-sm'>Tiene que concretar sus ayudas pendientes para continuar</a>";
                                 //} ?>
 
                         </form>
@@ -614,8 +628,11 @@ echo "<h3 style='color:orange'><center><b>¡Usted ya solicitó ayuda!</b></cente
                         <input type="hidden" name="id_recibe" value="<?php echo $idd; ?>">
                     </div>
                     <br>
-                    
-                    <center><button class="btn btn-info" type="submit"><i class="fa fa-handshake-o"></i><b> Solicitar Ayuda</b></center>
+
+                    <center>
+                        <button class="btn btn-info" type="submit"><i class="fa fa-handshake-o"></i><b> Solicitar
+                                Ayuda</b>
+                    </center>
                     </button>
                 </form>
             </div>
