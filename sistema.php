@@ -47,7 +47,7 @@ include "BrindarAyudaData.php";
 
             <?php
 
-            $conexion = mysqli_connect('localhost', 'root', '', 'sishorario');
+            $conexion = mysqli_connect('mysql.hostinger.com.ar', 'u526711303_94', 'UJXY25ysYIDe', 'u526711303_worki');
 
             $sql = "SELECT * from tblayuda where id_usuario=$idd  ";
             $result = mysqli_query($conexion, $sql);
@@ -131,7 +131,7 @@ include "BrindarAyudaData.php";
             ?>
             <?php
 
-            $conexion = mysqli_connect('localhost', 'root', '', 'sishorario');
+            $conexion = mysqli_connect('mysql.hostinger.com.ar', 'u526711303_94', 'UJXY25ysYIDe', 'u526711303_worki');
 
             $sql21 = "SELECT * from tblayuda where id_usuario=$idd order by id desc limit 1  ";
             $result21 = mysqli_query($conexion, $sql21);
@@ -173,7 +173,7 @@ include "BrindarAyudaData.php";
 
             <?php
             $monto = 0;
-            $conexion = mysqli_connect('localhost', 'root', '', 'sishorario');
+            $conexion = mysqli_connect('mysql.hostinger.com.ar', 'u526711303_94', 'UJXY25ysYIDe', 'u526711303_worki');
 
             $sql = "SELECT * from tblayuda where id_usuario=$idd order by id desc limit 1  ";
             $result = mysqli_query($conexion, $sql);
@@ -643,5 +643,9 @@ include "BrindarAyudaData.php";
 
 </div> <!-- Aqui termina el modal numero uno-->
 
-
+<script>
+    $(document).ready(function () {
+        $('[data-toggle="popover"]').popover({html:true});
+    });
+</script>
 </html>

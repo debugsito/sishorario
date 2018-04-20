@@ -229,7 +229,7 @@ if (count($users) > 0) {
 
 <?php $sumar_total = $sumar1 + $sumar2 + $sumar3 + $sumar4 + $sumar5; ?>
 
-<?php 
+<?php
 $ayudas = AyudaData::getAyudasByUsuario($idd)->ayudas;
 
 $ayuda_monto = $ayuda_usar;

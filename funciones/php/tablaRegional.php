@@ -92,7 +92,7 @@ include "funciones/php/AyudasTransacciones.php";
                         </td>
 
                     <?php } elseif ( $ayuda1->validar==2 || $fecha_finish_ayuda1 <= date("Y-m-d H:i:s")){
-                        echo "<td><a class='btn btn-danger btn-sm'>-</a></td>";
+                        echo "<td><center><a class='btn btn-danger btn-sm'> <==> </a></center></td>";
                     } else { ?>
 
 
@@ -113,15 +113,8 @@ include "funciones/php/AyudasTransacciones.php";
                         </td>
 
 
-                    <?php } ?>
-
-                    <script>
-                        $(document).ready(function () {
-                            $('[data-toggle="popover"]').popover();
-                        });
-                    </script>
-
-                    <?php if ($ayuda1->validar == 0) { ?>
+                    <?php }
+                    if ($ayuda1->validar == 0) { ?>
 
                         <td style="width: 30%;">
                             <center>
